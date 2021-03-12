@@ -39,8 +39,9 @@
 "graduationpro\port.o"
 "graduationpro\dr16_remote.o"
 "graduationpro\djimotor.o"
+"graduationpro\bldcmotor.o"
 "graduationpro\pid.o"
---library_type=microlib --strict --scatter "GraduationPro\GraduationPro.sct"
+--strict --scatter "GraduationPro\GraduationPro.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "GraduationPro.map" -o GraduationPro\GraduationPro.axf

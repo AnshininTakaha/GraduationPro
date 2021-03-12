@@ -3,14 +3,14 @@
 
 #include "PID.h"
 #include "can.h"
+
 /* =========================== PriviteDefine Begin=========================== */
-//#define USE_StepGaining
+//#define USE_3508StepGaining
 
 #define USE_M3508
 #define Roll_CountingM3508
 
 //#define USE_M2006
-
 
 
 
@@ -36,7 +36,8 @@
 #define DJIMotorGroundInit \
 { \
 	&DJI_Motor_CAN1_IT_Init, \
-	&DJI_Motor_CAN2_IT_Init, \
+	&CAN1_Handler, \
+	&DJI_Motor3508Process, \
 } 
 
 
@@ -46,7 +47,6 @@
 		{0,0,0,0,0,0}, \
 		{PID_GroundInit,PID_GroundInit,PID_GroundInit}, \
 		{0,0}, \
-		&DJI_Motor3508Process, \
 }
 /* =========================== GroundInit End=========================== */
 
@@ -55,18 +55,9 @@
 typedef struct///DJI电机初始化函数结构体
 {
 	void(*DJI_Motor_CAN1_IT_Init)(void);
-	void(*DJI_Motor_CAN2_IT_Init)(void);
-
+	void(*CAN1_Handler)(CAN_HandleTypeDef *hcan);
+	void(*DJI_Motor3508Process)(CAN_RxTypedef RxMessage);
 }DJI_MotorInit_t;
-
-
-
-typedef struct///CAN解码接收完整体
-{
-	uint8_t     CAN_Switch;
-	uint8_t 		CAN_RxMessage[8];
-	CAN_RxHeaderTypeDef CAN_RxHeader;
-}CAN_RxTypedef;
 
 
 
@@ -98,9 +89,6 @@ typedef struct{///3508电机对应结构体
 	uint16_t Frame;
 	uint8_t OffFlag;
 	}Frame;
-	
-	/*指针函数部分*/
-	void(*DJI_Motor3508Process)(CAN_RxTypedef RxMessage);
 	
 }DJI_Motor3508Folk_t;
 #endif
@@ -144,7 +132,7 @@ typedef struct{///2006电机对应结构体
 
 /* =========================== ShareValue&funtions Begin=========================== */
 /****可外部共享变量****/
-extern DJI_MotorInit_t DJIMotorInit;
+extern DJI_MotorInit_t DJIMotorFunction;
 extern DJI_Motor3508Folk_t M3508_MoonWheel[4];
 /* =========================== ShareValue&funtions End=========================== */
 

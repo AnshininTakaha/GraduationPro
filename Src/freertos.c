@@ -28,6 +28,7 @@
 /* USER CODE BEGIN Includes */     
 #include "DR16_Remote.h"
 #include "DJIMotor.h"
+#include "BLDCMotor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -136,9 +137,10 @@ void StartTaskEnter(void const * argument)
 {
   /* USER CODE BEGIN StartTaskEnter */
   /* Infinite loop */
-	DJIMotorInit.DJI_Motor_CAN1_IT_Init();
-	DJIMotorInit.DJI_Motor_CAN2_IT_Init();
-//	DR16.DR16_USART1_IT_Init();
+	
+	DJIMotorFunction.DJI_Motor_CAN1_IT_Init();
+	BLDCMotorFunction.BLDC_Motor_CAN2_IT_Init();
+	DR16.DR16_USART1_IT_Init();
 	
   taskENTER_CRITICAL();
 	
@@ -162,8 +164,25 @@ void CANTaskEnter(void const * argument)
 {
   /* USER CODE BEGIN CANTaskEnter */
   /* Infinite loop */
+	
+	/*这里这样子定义是为了适配模块化的做法*/
+	CAN_RxTypedef CanReceiveData;
+	
   for(;;)
   {
+    xQueueReceive(xQueueCanReceiveHandle, &CanReceiveData, portMAX_DELAY);
+		
+		if(CanReceiveData.CAN_Switch == 1)
+		{
+			
+			DJIMotorFunction.DJI_Motor3508Process(CanReceiveData);
+		}
+		if(CanReceiveData.CAN_Switch == 2)
+		{
+			
+			BLDCMotorFunction.BLDCMotor_Process(CanReceiveData);
+		}
+		
     osDelay(1);
   }
   /* USER CODE END CANTaskEnter */
@@ -171,7 +190,8 @@ void CANTaskEnter(void const * argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-     
+
+	
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

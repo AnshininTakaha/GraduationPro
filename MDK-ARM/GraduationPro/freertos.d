@@ -52,3 +52,4 @@ graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
 graduationpro\freertos.o: ../Inc/DJIMotor.h
 graduationpro\freertos.o: ../Inc/PID.h
 graduationpro\freertos.o: ../Inc/can.h
+graduationpro\freertos.o: ../Inc/BLDCMotor.h

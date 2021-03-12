@@ -45,3 +45,7 @@ graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include
 graduationpro\stm32f4xx_it.o: ../Inc/DR16_Remote.h
 graduationpro\stm32f4xx_it.o: ../Inc/usart.h
 graduationpro\stm32f4xx_it.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\stm32f4xx_it.o: ../Inc/DJIMotor.h
+graduationpro\stm32f4xx_it.o: ../Inc/PID.h
+graduationpro\stm32f4xx_it.o: ../Inc/can.h
+graduationpro\stm32f4xx_it.o: ../Inc/BLDCMotor.h

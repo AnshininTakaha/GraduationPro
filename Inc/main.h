@@ -64,6 +64,8 @@ void Error_Handler(void);
 #define DR16CheckLED_GPIO_Port GPIOE
 #define CAN1CheckLED_Pin GPIO_PIN_11
 #define CAN1CheckLED_GPIO_Port GPIOE
+#define CAN2CheckLED_Pin GPIO_PIN_12
+#define CAN2CheckLED_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

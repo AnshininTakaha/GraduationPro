@@ -14,31 +14,31 @@
 						 
   * @brief   DJI各种电机整合结构
 						 
-	* @funtion(in) 
-						 
-	* @value(share)   
+	* @funtion(in) DJI_Motor3508Process             3508电机解码
+								 DJI_Motor_CAN1_IT_Init           CAN1初始化
+								 DJI_Motor_CAN2_IT_Init           CAN2初始化
+								 CAN1_Handler                     CAN1中断处理函数
+	* @value(share)DJIMotorFunction                 DJI相关功能函数
+								 M3508_MoonWheel[x]               相关3508月球轮的具体信息
   ******************************************************************************
   */
 	
 #include "DJIMotor.h"
-
+#include "handle.h"
 
 /* =========================== FuntionsPulk Begin=========================== */
 void DJI_Motor3508Process(CAN_RxTypedef RxMessage);
 void DJI_Motor_CAN1_IT_Init(void);
-void DJI_Motor_CAN2_IT_Init(void);
+void CAN1_Handler(CAN_HandleTypeDef *hcan);
 /* =========================== FuntionsPulk End=========================== */
 
 /* =========================== Value Begin=========================== */
-DJI_MotorInit_t DJIMotorInit = DJIMotorGroundInit;
+DJI_MotorInit_t DJIMotorFunction = DJIMotorGroundInit;
 /*3508电机基本运动数据储存结构体，月球轮四个*/
 DJI_Motor3508Folk_t M3508_MoonWheel[4] = {DJI_Motor3508GroundInit,
 																					DJI_Motor3508GroundInit,
 																					DJI_Motor3508GroundInit,
 																					DJI_Motor3508GroundInit};
-
-
-
 
 /* =========================== Value End=========================== */
 
@@ -85,7 +85,7 @@ void DJI_Motor3508Process(CAN_RxTypedef RxMessage)
 	/*totalAngle fulltank process..*/
 	#endif
 			
-	#ifdef USE_StepGaining
+	#ifdef USE_3508StepGaining
 	/*帧率统计*/
 	M3508_MoonWheel[list_id].Frame.Frame++;
 			
@@ -112,10 +112,10 @@ void CAN1_Handler(CAN_HandleTypeDef *hcan)
 												&CAN_RxMessage.CAN_RxHeader,
 												CAN_RxMessage.CAN_RxMessage);
 		
+		/*将数据发送到队列里面*/
+		xQueueSendToBackFromISR(xQueueCanReceiveHandle,&CAN_RxMessage,0);
 		
-			
-		
-		
+		/*清理中断标志位*/
 		__HAL_CAN_CLEAR_FLAG(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 	}
 }
@@ -139,24 +139,7 @@ void DJI_Motor_CAN1_IT_Init(void)
 		
 }
 
-/**
-  * @Data    2020-12-07
-  * @brief   初始化CAN2中断函数，用于接收Motor的报文
-  * @param   void
-  * @retval  void
-  */
-void DJI_Motor_CAN2_IT_Init(void)
-{
-	/*使能滤波器*/
-	CAN2_FILTER_Init(CAN2_Filter);
-	
-	/*启用CAN*/
-	HAL_CAN_Start(&hcan2);
-	
-	/*使能CAN的IT中断*/
-	__HAL_CAN_ENABLE_IT(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING);         //  CAN_IT_FMP0
 
-}
 
 
 /* =========================== Funtions End=========================== */

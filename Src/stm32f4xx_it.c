@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "DR16_Remote.h"
+#include "DJIMotor.h"
+#include "BLDCMotor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,11 +93,12 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+//	HAL_NVIC_SystemReset();
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+		
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -172,7 +175,7 @@ void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
 	HAL_GPIO_TogglePin(CAN1CheckLED_GPIO_Port,CAN1CheckLED_Pin);
-	
+	DJIMotorFunction.CAN1_Handler(&hcan1);
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
@@ -229,7 +232,8 @@ void DMA2_Stream2_IRQHandler(void)
 void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
-
+	HAL_GPIO_TogglePin(CAN2CheckLED_GPIO_Port,CAN2CheckLED_Pin);
+	BLDCMotorFunction.CAN2_Handler(&hcan2);
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */

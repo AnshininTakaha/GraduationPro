@@ -6,6 +6,7 @@
 #pragma anon_unions
 
 /* =========================== PriviteDefine Begin=========================== */
+//#define DR16FrameFolk
 /*DR16遥控器相关参数*/
 #define DR16BufferNumber 22
 #define DR16BufferTruthNumber 18

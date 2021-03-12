@@ -27,7 +27,12 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+typedef struct///CAN解码接收完整体
+{
+	uint8_t     CAN_Switch;
+	uint8_t 		CAN_RxMessage[8];
+	CAN_RxHeaderTypeDef CAN_RxHeader;
+}CAN_RxTypedef;
 /* USER CODE END Includes */
 
 extern CAN_HandleTypeDef hcan1;

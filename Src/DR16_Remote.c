@@ -100,7 +100,9 @@ void DR16_Process(uint8_t *pData)
 
 	//your control code бн.
 	DR16.rc.ch4_DW = (pData[16] | (pData[17] << 8)) & 0x07FF;
+	#ifdef DR16FrameFolk
 	DR16.DR16_Frame++;
+	#endif
 
 	DR16.rc.ch0 -= 1024;
 	DR16.rc.ch1 -= 1024;
