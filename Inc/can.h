@@ -49,7 +49,7 @@ void MX_CAN2_Init(void);
 /* USER CODE BEGIN Prototypes */
 void CAN1_FILTER_Init(CAN_FilterTypeDef CAN1_Filter);
 void CAN2_FILTER_Init(CAN_FilterTypeDef CAN2_Filter);
-
+void CAN_SendData_F0(CAN_HandleTypeDef* CANx, uint8_t id_type, uint32_t id, uint8_t data[8]);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

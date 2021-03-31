@@ -257,6 +257,35 @@ void CAN2_FILTER_Init(CAN_FilterTypeDef CAN2_Filter)
 	CAN2_Filter.FilterMaskIdLow = 0x0000;
 	HAL_CAN_ConfigFilter(&hcan2, &CAN2_Filter);
 }
+
+/**
+  * @brief  CAN发送数据（通过FIFO0）
+  * @param  CANx 		   CAN编号
+  * 				id_type ·	 id类型 CAN_ID_STD， CAN_ID_EXT
+  *					id			   id号
+  * 				data[8]		 8个数据
+  * @retval None
+  */
+void CAN_SendData_F0(CAN_HandleTypeDef* CANx, uint8_t id_type, uint32_t id, uint8_t data[8])  
+{	  
+	CAN_TxHeaderTypeDef TxMessage;
+	
+	if(id_type == CAN_ID_STD)
+	{
+		TxMessage.StdId = id;
+	}
+	else
+	{
+		TxMessage.ExtId = id;
+	}
+	
+	TxMessage.IDE = id_type;					 //ID类型
+	TxMessage.RTR = CAN_RTR_DATA;				 //发送的为数据
+	TxMessage.DLC = 0x08;						 //数据长度为8字节
+	TxMessage.TransmitGlobalTime = DISABLE;
+	
+	HAL_CAN_AddTxMessage(CANx,&TxMessage,data,(uint32_t*)CAN_TX_MAILBOX0);
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

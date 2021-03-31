@@ -52,3 +52,4 @@ graduationpro\main.o: ../Inc/usart.h
 graduationpro\main.o: ../Inc/gpio.h
 graduationpro\main.o: ../Inc/DR16_Remote.h
 graduationpro\main.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\main.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\math.h

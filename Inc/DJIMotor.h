@@ -5,7 +5,7 @@
 #include "can.h"
 
 /* =========================== PriviteDefine Begin=========================== */
-//#define USE_3508StepGaining
+#define USE_3508StepGaining
 
 #define USE_M3508
 #define Roll_CountingM3508
@@ -36,7 +36,7 @@
 #define DJIMotorGroundInit \
 { \
 	&DJI_Motor_CAN1_IT_Init, \
-	&CAN1_Handler, \
+	&CAN1_DJIHandler, \
 	&DJI_Motor3508Process, \
 } 
 
@@ -55,7 +55,7 @@
 typedef struct///DJI电机初始化函数结构体
 {
 	void(*DJI_Motor_CAN1_IT_Init)(void);
-	void(*CAN1_Handler)(CAN_HandleTypeDef *hcan);
+	void(*CAN1_DJIHandler)(CAN_HandleTypeDef *hcan);
 	void(*DJI_Motor3508Process)(CAN_RxTypedef RxMessage);
 }DJI_MotorInit_t;
 

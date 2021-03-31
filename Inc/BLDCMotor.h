@@ -19,7 +19,7 @@
 { \
 	&BLDC_Motor_CAN2_IT_Init, \
 	&BLDCMotor_Process, \
-	&CAN2_Handler \
+	&CAN2_BLDCHandler \
 }
 /* =========================== GroundInit End=========================== */
 
@@ -122,8 +122,9 @@ typedef struct{///MSG 专用发送结构体
 typedef struct {///MSG专用功能函数结构体
 	void(*BLDC_Motor_CAN2_IT_Init)(void);
 	void(*BLDCMotor_Process)(CAN_RxTypedef RxMessage);
-	void(*CAN2_Handler)(CAN_HandleTypeDef *hcan);
+	void(*CAN2_BLDCHandler)(CAN_HandleTypeDef *hcan);
 }BLDC_BJMFunction_t;
+
 
 
 

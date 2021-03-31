@@ -123,10 +123,28 @@ void DR16_Process(uint8_t *pData)
 		DR16.rc.ch4_DW = 0;
 	
 	/*Backup the value..*/
-	DR16_Export_data.DR16_ForwardBack_Value = DR16.rc.ch3 * 10.0f;
-	DR16_Export_data.DR16_Left_Right_Value = DR16.rc.ch2 *10.0f;
-	DR16_Export_data.DR16_Omega_Value = DR16.rc.ch0 * 1.0f;
-
+	/*直接运动基础二通道（解构值）VDx VDy*/
+	DR16_Export_data.DR16_Direct_Y_Value = DR16.rc.ch3 * 10.0f;
+	DR16_Export_data.DR16_Direct_X_Value = DR16.rc.ch2 *10.0f;
+	
+	/*直接运动通道角度值AD*/
+	DR16_Export_data.DR16_Direct_Angle_Value = atan2(DR16_Export_data.DR16_Direct_X_Value, \
+	DR16_Export_data.DR16_Direct_Y_Value)* 180.0f / PI;
+	
+	/*自旋通道VO，因为AO在底盘绝对层更好操作，所以选择放到下层去做变换*/
+	DR16_Export_data.DR16_Omega_Value = DR16.rc.ch0 * 10.0f;
+	
+	/*OMEGA = +右 : LF:45 RF:135 RB:-135 LB:-45*/
+	/*OMEGA = -左 : LF:-135 RF:-45 RB:45 LB:135*/
+	
+//	DR16_Export_data.DR16_Velocity_Value = sqrt( \
+//	((DR16_Export_data.DR16_Direct_X_Value + DR16_Export_data.DR16_Omega_X_Value) * \
+//	(DR16_Export_data.DR16_Direct_X_Value + DR16_Export_data.DR16_Omega_X_Value)) + \
+//	((DR16_Export_data.DR16_Direct_Y_Value + DR16_Export_data.DR16_Omega_Y_Value) * \
+//	(DR16_Export_data.DR16_Direct_Y_Value + DR16_Export_data.DR16_Omega_Y_Value)));
+	
+	DR16_Export_data.Switch_Left = DR16.rc.s_left;
+	DR16_Export_data.Switch_Right = DR16.rc.s_right;
 }
 
 

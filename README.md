@@ -14,20 +14,34 @@
 User：     |
 		   |
 		   |
-Devices：  |	DR16	 	DJI_M			  BLDCMotor
+Devices：  |	DR16	 	DJI_M			  BLDCMotor		Enconder
 		   |
 		   |
 Alth：     |			  	 PID
 		   |
 		   |
-BSP：      |	USART	  	 CAN				CAN
+BSP：      |	USART	  	 CAN				 CAN		   CAN
 		   |	 DMA
 		   |
 FTS：      |			FreeRTOS(handle)
 
 PS:DJI_M处选择使用用handle.h调出句柄，handle.h本身包含FreeRTOS所有头文件，只会被包含，防止包含循环
    说到底还是憨批CubeMX的freertos.h没有留USER CODE Place，真的憨批！！
-   
-  
+
+/* ===========================频率计算=========================== */
+CAN1、CAN2：45MHz/5PRE/(1+3tq+5tq)
+
   
 /* ===========================底盘ID排布=========================== */
+
+
+	|4(ID：40)			Y Y				(ID：37)1|
+	Enc:2									Enc:3
+
+												 X
+												 X
+
+
+	|3(ID：39)							(ID：38)2|
+	Enc:5								Enc:4
+

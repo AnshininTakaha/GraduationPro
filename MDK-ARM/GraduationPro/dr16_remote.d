@@ -35,3 +35,4 @@ graduationpro\dr16_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_t
 graduationpro\dr16_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 graduationpro\dr16_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 graduationpro\dr16_remote.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\dr16_remote.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\math.h

@@ -37,9 +37,11 @@
 "graduationpro\cmsis_os.o"
 "graduationpro\heap_4.o"
 "graduationpro\port.o"
+"graduationpro\classical_control.o"
 "graduationpro\dr16_remote.o"
 "graduationpro\djimotor.o"
 "graduationpro\bldcmotor.o"
+"graduationpro\enconder.o"
 "graduationpro\pid.o"
 --strict --scatter "GraduationPro\GraduationPro.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

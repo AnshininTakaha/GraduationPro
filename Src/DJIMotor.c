@@ -29,7 +29,7 @@
 /* =========================== FuntionsPulk Begin=========================== */
 void DJI_Motor3508Process(CAN_RxTypedef RxMessage);
 void DJI_Motor_CAN1_IT_Init(void);
-void CAN1_Handler(CAN_HandleTypeDef *hcan);
+void CAN1_DJIHandler(CAN_HandleTypeDef *hcan);
 /* =========================== FuntionsPulk End=========================== */
 
 /* =========================== Value Begin=========================== */
@@ -84,7 +84,7 @@ void DJI_Motor3508Process(CAN_RxTypedef RxMessage)
 			
 	/*totalAngle fulltank process..*/
 	#endif
-			
+	
 	#ifdef USE_3508StepGaining
 	/*Ö¡ÂÊÍ³¼Æ*/
 	M3508_MoonWheel[list_id].Frame.Frame++;
@@ -99,7 +99,7 @@ void DJI_Motor3508Process(CAN_RxTypedef RxMessage)
   * @retval void
 	* @fallback None
   */
-void CAN1_Handler(CAN_HandleTypeDef *hcan)
+void CAN1_DJIHandler(CAN_HandleTypeDef *hcan)
 {
 	if (__HAL_CAN_GET_IT_SOURCE(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING))
 	{

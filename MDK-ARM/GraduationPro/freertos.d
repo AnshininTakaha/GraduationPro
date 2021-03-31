@@ -49,7 +49,9 @@ graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/eve
 graduationpro\freertos.o: ../Inc/DR16_Remote.h
 graduationpro\freertos.o: ../Inc/usart.h
 graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\math.h
 graduationpro\freertos.o: ../Inc/DJIMotor.h
 graduationpro\freertos.o: ../Inc/PID.h
 graduationpro\freertos.o: ../Inc/can.h
 graduationpro\freertos.o: ../Inc/BLDCMotor.h
+graduationpro\freertos.o: ../Inc/Enconder.h

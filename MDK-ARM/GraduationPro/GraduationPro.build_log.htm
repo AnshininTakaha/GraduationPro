@@ -21,13 +21,26 @@ Target DLL:      CMSIS_AGDI.dll V1.31.17.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
-D:\Desktop\GraduationPro\MDK-ARM\GraduationPro.uvprojx
-Project File Date:  03/12/2021
+D:\Desktop\毕业设计\毕业设计代码\GraduationPro\MDK-ARM\GraduationPro.uvprojx
+Project File Date:  03/30/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\keil\keil5.27\ARM\ARMCC\Bin'
 Build target 'GraduationPro'
-"GraduationPro\GraduationPro.axf" - 0 Error(s), 0 Warning(s).
+compiling Classical_Control.c...
+..\Src\Classical_Control.c(34): warning:  #550-D: variable "Direct_Velocity"  was set but never used
+  	float Direct_Velocity, Direct_Angle, Omega_Velocity;
+..\Src\Classical_Control.c(34): warning:  #550-D: variable "Direct_Angle"  was set but never used
+  	float Direct_Velocity, Direct_Angle, Omega_Velocity;
+..\Src\Classical_Control.c(34): warning:  #550-D: variable "Omega_Velocity"  was set but never used
+  	float Direct_Velocity, Direct_Angle, Omega_Velocity;
+..\Src\Classical_Control.c(35): warning:  #550-D: variable "Omega_Angle"  was set but never used
+  	float	Omega_Angle;
+..\Src\Classical_Control.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=19760 RO-data=748 RW-data=256 ZI-data=19920  
+FromELF: creating hex file...
+"GraduationPro\GraduationPro.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -50,7 +63,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.2.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

@@ -23,6 +23,7 @@
 #include "stm32f4xx_it.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "handle.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "DR16_Remote.h"
@@ -175,7 +176,23 @@ void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
 	HAL_GPIO_TogglePin(CAN1CheckLED_GPIO_Port,CAN1CheckLED_Pin);
-	DJIMotorFunction.CAN1_Handler(&hcan1);
+	if (__HAL_CAN_GET_IT_SOURCE(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING))
+	{
+		CAN_RxTypedef CAN_RxMessage;
+		
+		/*标记当前信号为CAN1信号,并接收对应的CAN1的信号*/
+		CAN_RxMessage.CAN_Switch = 1;
+		HAL_CAN_GetRxMessage(&hcan1,
+												CAN_RX_FIFO0,
+												&CAN_RxMessage.CAN_RxHeader,
+												CAN_RxMessage.CAN_RxMessage);
+		
+		/*将数据发送到队列里面*/
+		xQueueSendToBackFromISR(xQueueCanReceiveHandle,&CAN_RxMessage,0);
+		
+		/*清理中断标志位*/
+		__HAL_CAN_CLEAR_FLAG(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+	}
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
@@ -233,7 +250,23 @@ void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
 	HAL_GPIO_TogglePin(CAN2CheckLED_GPIO_Port,CAN2CheckLED_Pin);
-	BLDCMotorFunction.CAN2_Handler(&hcan2);
+	if (__HAL_CAN_GET_IT_SOURCE(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING))
+	{
+		CAN_RxTypedef CAN_RxMessage;
+		
+		/*标记当前信号为CAN2信号,并接收对应的CAN2的信号*/
+		CAN_RxMessage.CAN_Switch = 2;
+		HAL_CAN_GetRxMessage(&hcan2,
+												CAN_RX_FIFO0,
+												&CAN_RxMessage.CAN_RxHeader,
+												CAN_RxMessage.CAN_RxMessage);
+		
+		/*将数据发送到队列里面*/
+		xQueueSendToBackFromISR(xQueueCanReceiveHandle,&CAN_RxMessage,0);
+		
+		/*清理中断标志位*/
+		__HAL_CAN_CLEAR_FLAG(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING);
+	}
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */

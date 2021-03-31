@@ -42,9 +42,16 @@ graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/portabl
 graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
 graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+graduationpro\stm32f4xx_it.o: ../Inc/handle.h
+graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+graduationpro\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 graduationpro\stm32f4xx_it.o: ../Inc/DR16_Remote.h
 graduationpro\stm32f4xx_it.o: ../Inc/usart.h
 graduationpro\stm32f4xx_it.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\stm32f4xx_it.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\math.h
 graduationpro\stm32f4xx_it.o: ../Inc/DJIMotor.h
 graduationpro\stm32f4xx_it.o: ../Inc/PID.h
 graduationpro\stm32f4xx_it.o: ../Inc/can.h

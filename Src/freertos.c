@@ -29,6 +29,7 @@
 #include "DR16_Remote.h"
 #include "DJIMotor.h"
 #include "BLDCMotor.h"
+#include "Enconder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -141,6 +142,7 @@ void StartTaskEnter(void const * argument)
 	DJIMotorFunction.DJI_Motor_CAN1_IT_Init();
 	BLDCMotorFunction.BLDC_Motor_CAN2_IT_Init();
 	DR16.DR16_USART1_IT_Init();
+	EnconderFunction.Enc_CAN1_IT_Init();
 	
   taskENTER_CRITICAL();
 	
@@ -165,7 +167,6 @@ void CANTaskEnter(void const * argument)
   /* USER CODE BEGIN CANTaskEnter */
   /* Infinite loop */
 	
-	/*这里这样子定义是为了适配模块化的做法*/
 	CAN_RxTypedef CanReceiveData;
 	
   for(;;)
@@ -174,14 +175,28 @@ void CANTaskEnter(void const * argument)
 		
 		if(CanReceiveData.CAN_Switch == 1)
 		{
+			switch(CanReceiveData.CAN_RxHeader.StdId)
+			{
+				case M3508_READID_START...M3508_READID_END:
+					DJIMotorFunction.DJI_Motor3508Process(CanReceiveData);
+					break;
+				
+				case Encoder_HOST_CMD:
+					EnconderFunction.Encoder_Process(CanReceiveData);
+					break;
+				default:
+					break;
+			}
 			
-			DJIMotorFunction.DJI_Motor3508Process(CanReceiveData);
+			
 		}
 		if(CanReceiveData.CAN_Switch == 2)
 		{
-			
 			BLDCMotorFunction.BLDCMotor_Process(CanReceiveData);
 		}
+			
+			
+		
 		
     osDelay(1);
   }

@@ -10,9 +10,12 @@
 						 
   * @brief   BLDC各种电机整合结构
 						 
-	* @funtion(in) 
+	* @funtion(in) BLDC_Motor_CAN2_IT_Init  BLDC对应的CAN初始化用
+								 BLDCMotor_Process        BLDC电机解码
+								 CAN2_Handler             CAN2中断处理函数
 						 
-	* @value(share)   
+	* @value(share)BLDC_Motors              存储对应的BLDC的参数状况
+								 BLDCMotorFunction        储存对应的BLDC的函数状况
   ******************************************************************************
   */
 #include "BLDCMotor.h"
@@ -20,7 +23,7 @@
 /* =========================== FuntionsPulk Begin=========================== */
 void BLDC_Motor_CAN2_IT_Init(void);
 void BLDCMotor_Process(CAN_RxTypedef RxMessage);
-void CAN2_Handler(CAN_HandleTypeDef *hcan);
+void CAN2_BLDCHandler(CAN_HandleTypeDef *hcan);
 
 /*值处理函数*/
 void buffer_append_int16(uint8_t* buffer, int16_t number, int32_t *index);
@@ -81,7 +84,7 @@ void BLDCMotor_Process(CAN_RxTypedef RxMessage)
 	
 	
 	/*根据命令码进行处理，本杰明最大ID只能到200*/
-	if(list_id < 200)
+	if(list_id < 200  && BLDC_id != 0)
 	{
 		/*取拓展ID高8位，对应上命令表方便操作*/	
 		BLDC_Cmd = (RxMessage.CAN_RxHeader.ExtId >>8);
@@ -160,13 +163,13 @@ void BLDCMotor_Process(CAN_RxTypedef RxMessage)
   * @retval void
 	* @fallback None
   */
-void CAN2_Handler(CAN_HandleTypeDef *hcan)
+void CAN2_BLDCHandler(CAN_HandleTypeDef *hcan)
 {
 	if (__HAL_CAN_GET_IT_SOURCE(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING))
 	{
 		CAN_RxTypedef CAN_RxMessage;
 		
-		/*标记当前信号为CAN1信号,并接收对应的CAN1的信号*/
+		/*标记当前信号为CAN2信号,并接收对应的CAN2的信号*/
 		CAN_RxMessage.CAN_Switch = 2;
 		HAL_CAN_GetRxMessage(&hcan2,
 												CAN_RX_FIFO0,
@@ -266,7 +269,6 @@ uint16_t buffer_get_uint16(const uint8_t *buffer, int32_t *index)
 	*index += 2;
 	return res;
 }
-
 int32_t buffer_get_int32(const uint8_t *buffer, int32_t *index) 
 {
 	int32_t res =	((uint32_t) buffer[*index]) << 24 |
@@ -276,6 +278,7 @@ int32_t buffer_get_int32(const uint8_t *buffer, int32_t *index)
 	*index += 4;
 	return res;
 }
+
 
 uint32_t buffer_get_uint32(const uint8_t *buffer, int32_t *index) 
 {
