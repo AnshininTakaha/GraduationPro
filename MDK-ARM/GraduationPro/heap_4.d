@@ -1,8 +1,8 @@
 graduationpro\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
-graduationpro\heap_4.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdlib.h
+graduationpro\heap_4.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdlib.h
 graduationpro\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\heap_4.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\heap_4.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\heap_4.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\heap_4.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\heap_4.o: ../Inc/FreeRTOSConfig.h
 graduationpro\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h

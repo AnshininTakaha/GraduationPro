@@ -1,8 +1,8 @@
 graduationpro\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
-graduationpro\list.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdlib.h
+graduationpro\list.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdlib.h
 graduationpro\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\list.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\list.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\list.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\list.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\list.o: ../Inc/FreeRTOSConfig.h
 graduationpro\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h

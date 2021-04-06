@@ -1,7 +1,7 @@
 graduationpro\freertos.o: ../Src/freertos.c
 graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\freertos.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\freertos.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\freertos.o: ../Inc/FreeRTOSConfig.h
 graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
@@ -48,8 +48,8 @@ graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/sem
 graduationpro\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 graduationpro\freertos.o: ../Inc/DR16_Remote.h
 graduationpro\freertos.o: ../Inc/usart.h
-graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdbool.h
-graduationpro\freertos.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\math.h
+graduationpro\freertos.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdbool.h
+graduationpro\freertos.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\math.h
 graduationpro\freertos.o: ../Inc/DJIMotor.h
 graduationpro\freertos.o: ../Inc/PID.h
 graduationpro\freertos.o: ../Inc/can.h

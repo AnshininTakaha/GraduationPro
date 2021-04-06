@@ -1,9 +1,9 @@
 graduationpro\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
-graduationpro\cmsis_os.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\string.h
+graduationpro\cmsis_os.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\string.h
 graduationpro\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 graduationpro\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\cmsis_os.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\cmsis_os.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\cmsis_os.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\cmsis_os.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\cmsis_os.o: ../Inc/FreeRTOSConfig.h
 graduationpro\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h

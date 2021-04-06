@@ -8,7 +8,7 @@ graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 graduationpro\dma.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 graduationpro\dma.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h
 graduationpro\dma.o: ../Drivers/CMSIS/Include/core_cm4.h
-graduationpro\dma.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\dma.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\dma.o: ../Drivers/CMSIS/Include/cmsis_version.h
 graduationpro\dma.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 graduationpro\dma.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -16,7 +16,7 @@ graduationpro\dma.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 graduationpro\dma.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-graduationpro\dma.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\dma.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
 graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h
 graduationpro\dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h

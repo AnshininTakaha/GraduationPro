@@ -16,6 +16,8 @@
 
 /*DJI M3508 Motor for fourwheel*/
 #define M3508_READID_START	0x201
+#define M3508_READID_SEC		0x202
+#define M3508_READID_THIR   0X203
 #define M3508_READID_END	  0x204
 #define M3508_SENDID		    0x200
 #define M3508_MaxOutput 16384 

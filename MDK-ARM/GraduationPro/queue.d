@@ -1,9 +1,9 @@
 graduationpro\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/queue.c
-graduationpro\queue.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdlib.h
-graduationpro\queue.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\string.h
+graduationpro\queue.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdlib.h
+graduationpro\queue.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\string.h
 graduationpro\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\queue.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\queue.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\queue.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\queue.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\queue.o: ../Inc/FreeRTOSConfig.h
 graduationpro\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h

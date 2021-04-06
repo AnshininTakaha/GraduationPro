@@ -177,7 +177,10 @@ void CANTaskEnter(void const * argument)
 		{
 			switch(CanReceiveData.CAN_RxHeader.StdId)
 			{
-				case M3508_READID_START...M3508_READID_END:
+				case M3508_READID_START:
+				case M3508_READID_SEC:
+				case M3508_READID_THIR:
+				case M3508_READID_END:
 					DJIMotorFunction.DJI_Motor3508Process(CanReceiveData);
 					break;
 				

@@ -1,8 +1,8 @@
 graduationpro\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/timers.c
-graduationpro\timers.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdlib.h
+graduationpro\timers.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdlib.h
 graduationpro\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\timers.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\timers.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\timers.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\timers.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\timers.o: ../Inc/FreeRTOSConfig.h
 graduationpro\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h

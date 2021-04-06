@@ -877,8 +877,8 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=graduationpro\startup_stm32f427xx.d -ograduationpro\startup_stm
-32f427xx.o -I..\Inc -I.\RTE\_GraduationPro -ID:\keil\keil5.27\ARM\CMSIS\5.5.1\C
-MSIS\Core\Include -ID:\keil\keil5.27\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\De
+32f427xx.o -I..\Inc -I.\RTE\_GraduationPro -ID:\Keil\MDK_Pack\ARM\CMSIS\5.7.0\C
+MSIS\Core\Include -ID:\Keil\MDK_Pack\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\De
 vice\ST\STM32F4xx\Include --predefine="__UVISION_VERSION SETA 527" --predefine=
 "_RTE_ SETA 1" --predefine="STM32F427xx SETA 1" --list=startup_stm32f427xx.lst 
 startup_stm32f427xx.s

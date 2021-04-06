@@ -1,7 +1,7 @@
 graduationpro\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c
 graduationpro\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-graduationpro\port.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stddef.h
-graduationpro\port.o: D:\keil\keil5.27\ARM\ARMCC\Bin\..\include\stdint.h
+graduationpro\port.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stddef.h
+graduationpro\port.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdint.h
 graduationpro\port.o: ../Inc/FreeRTOSConfig.h
 graduationpro\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 graduationpro\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
