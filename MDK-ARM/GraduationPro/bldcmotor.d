@@ -34,6 +34,7 @@ graduationpro\bldcmotor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr
 graduationpro\bldcmotor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 graduationpro\bldcmotor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 graduationpro\bldcmotor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+graduationpro\bldcmotor.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\string.h
 graduationpro\bldcmotor.o: ../Inc/handle.h
 graduationpro\bldcmotor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 graduationpro\bldcmotor.o: ../Inc/FreeRTOSConfig.h

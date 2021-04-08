@@ -9,8 +9,21 @@
 /*编码器起始ID*/
 #define Encoder_READ_ID_START 0x02
 
+#define EncoderLF_ID 0x04
+#define EncoderRF_ID 0x05
+#define EncoderLB_ID 0x03
+#define EncoderRB_ID 0x02
+
+/*编码器绝对式起始角度(学校的舵轮底盘)*/
+#define EncoderLF_BaseAbsEnc 100898   //0
+#define EncoderRF_BaseAbsEnc 103913   //1
+#define EncoderLB_BaseAbsEnc 96605    //2
+#define EncoderRB_BaseAbsEnc 100888   //3
+
+
 /*电机编码器值转为角度*/
-#define Encoder_TO_ANGLE(x) (4096.0f/360.0f * x)
+#define ANGLE_TO_Enconder(x) (4096.0f/180.0f * x)
+#define Encoder_TO_ANGLE(x) (180.0f/4096.0f * x)
 /* =========================== PriviteDefine End=========================== */
 
 /* =========================== GroundInit Begin=========================== */

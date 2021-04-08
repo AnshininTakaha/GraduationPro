@@ -23,12 +23,15 @@
 #include "cmsis_os.h"
 #include "can.h"
 #include "dma.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "DR16_Remote.h"
+
+#include "handle.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,6 +98,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CAN1_Init();
   MX_CAN2_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 	
   /* USER CODE END 2 */

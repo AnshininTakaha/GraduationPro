@@ -10,7 +10,7 @@
 /* =========================== PriviteDefine End=========================== */
 
 /* =========================== GroundInit Begin=========================== */
-#define PID_GroundInit \
+#define PID_GroundSpendInit \
 { \
 	0, \
 	0, \
@@ -21,6 +21,34 @@
 	0,0,0, \
 	0, \
 	0, \
+	0, \
+} \
+
+#define PMode_GroundInitIn \
+{ \
+	0, \
+	0, \
+	0, \
+	0, \
+	0, \
+	0.8,0,1, \
+	0,0,0, \
+	0, \
+	5000, \
+	0, \
+} \
+
+#define PMode_GroundInitOut \
+{ \
+	0, \
+	0, \
+	0, \
+	0, \
+	0, \
+	-2,0,-2, \
+	0,0,0, \
+	0, \
+	5000, \
 	0, \
 } \
 
@@ -66,6 +94,8 @@ float Incremental_PID(incrementalpid_t *pid_t, float target, float measured);
 float Position_PID(positionpid_t *pid_t, float target, float measured);
 void IncrementalPID_paraReset(incrementalpid_t *pid_t);
 void PositionPID_setPara(positionpid_t *pid_t);
+
+
 /* =========================== ShareValue&funtions End=========================== */
 
 

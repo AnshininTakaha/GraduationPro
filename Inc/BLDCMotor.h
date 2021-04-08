@@ -10,6 +10,12 @@
 /*BLDC第一个电机的ID，为了方便计算数据存储在哪一个结构体*/
 #define BLDC_FisMotor_ID 37
 #define BLDC_LasMotor_ID 40
+
+#define BLDCMotorLF_ID 39
+#define BLDCMotorRF_ID 40
+#define BLDCMotorLB_ID 38
+#define BLDCMotorRB_ID 37
+
 /* =========================== PriviteDefine End=========================== */
 
 
@@ -19,7 +25,10 @@
 { \
 	&BLDC_Motor_CAN2_IT_Init, \
 	&BLDCMotor_Process, \
-	&CAN2_BLDCHandler \
+	&CAN2_BLDCHandler, \
+	&VSEC_SetDuty, \
+	&VSEC_SetCurrent, \
+	&VSEC_SetRpm, \
 }
 /* =========================== GroundInit End=========================== */
 
@@ -123,6 +132,12 @@ typedef struct {///MSG专用功能函数结构体
 	void(*BLDC_Motor_CAN2_IT_Init)(void);
 	void(*BLDCMotor_Process)(CAN_RxTypedef RxMessage);
 	void(*CAN2_BLDCHandler)(CAN_HandleTypeDef *hcan);
+	
+	/*发送数据函数*/
+//	void(*VESC_CANTransmit)(CAN_HandleTypeDef* CANx,uint32_t id, uint8_t *data,uint8_t len);
+	void(*VSEC_SetDuty)(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float duty);
+	void(*VSEC_SetCurrent)(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float current);
+	void(*VSEC_SetRpm)(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float rpm);
 }BLDC_BJMFunction_t;
 
 

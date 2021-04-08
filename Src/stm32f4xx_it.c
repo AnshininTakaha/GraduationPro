@@ -23,12 +23,13 @@
 #include "stm32f4xx_it.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "handle.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "DR16_Remote.h"
 #include "DJIMotor.h"
 #include "BLDCMotor.h"
+
+#include "handle.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

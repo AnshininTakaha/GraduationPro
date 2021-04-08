@@ -5,6 +5,7 @@
 "graduationpro\can.o"
 "graduationpro\dma.o"
 "graduationpro\freertos.o"
+"graduationpro\tim.o"
 "graduationpro\usart.o"
 "graduationpro\stm32f4xx_it.o"
 "graduationpro\stm32f4xx_hal_msp.o"
@@ -43,6 +44,7 @@
 "graduationpro\bldcmotor.o"
 "graduationpro\enconder.o"
 "graduationpro\pid.o"
+"graduationpro\angle_conversion.o"
 --strict --scatter "GraduationPro\GraduationPro.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

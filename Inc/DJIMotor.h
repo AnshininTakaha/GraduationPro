@@ -40,14 +40,15 @@
 	&DJI_Motor_CAN1_IT_Init, \
 	&CAN1_DJIHandler, \
 	&DJI_Motor3508Process, \
-} 
+	&DJIMotor_Set3508Current, \
+}  
 
 
 #define DJI_Motor3508GroundInit \
 { \
 		{0,0,0,0}, \
 		{0,0,0,0,0,0}, \
-		{PID_GroundInit,PID_GroundInit,PID_GroundInit}, \
+		{PID_GroundSpendInit,PMode_GroundInitOut,PMode_GroundInitIn}, \
 		{0,0}, \
 }
 /* =========================== GroundInit End=========================== */
@@ -59,6 +60,7 @@ typedef struct///DJI电机初始化函数结构体
 	void(*DJI_Motor_CAN1_IT_Init)(void);
 	void(*CAN1_DJIHandler)(CAN_HandleTypeDef *hcan);
 	void(*DJI_Motor3508Process)(CAN_RxTypedef RxMessage);
+	void(*DJIMotor_Set3508Current)(int16_t iq1, int16_t iq2, int16_t iq3, int16_t iq4);
 }DJI_MotorInit_t;
 
 

@@ -1,6 +1,7 @@
 graduationpro\classical_control.o: ..\Src\Classical_Control.c
 graduationpro\classical_control.o: ../Inc/Classical_Control.h
 graduationpro\classical_control.o: ../Inc/DR16_Remote.h
+graduationpro\classical_control.o: ../Inc/Angle_conversion.h
 graduationpro\classical_control.o: ../Inc/usart.h
 graduationpro\classical_control.o: ../Inc/main.h
 graduationpro\classical_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -37,3 +38,8 @@ graduationpro\classical_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx
 graduationpro\classical_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 graduationpro\classical_control.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdbool.h
 graduationpro\classical_control.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\math.h
+graduationpro\classical_control.o: ../Inc/BLDCMotor.h
+graduationpro\classical_control.o: ../Inc/can.h
+graduationpro\classical_control.o: ../Inc/Enconder.h
+graduationpro\classical_control.o: ../Inc/DJIMotor.h
+graduationpro\classical_control.o: ../Inc/PID.h

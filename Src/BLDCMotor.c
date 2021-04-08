@@ -19,11 +19,20 @@
   ******************************************************************************
   */
 #include "BLDCMotor.h"
+#include <string.h>
 #include "handle.h"
 /* =========================== FuntionsPulk Begin=========================== */
 void BLDC_Motor_CAN2_IT_Init(void);
 void BLDCMotor_Process(CAN_RxTypedef RxMessage);
 void CAN2_BLDCHandler(CAN_HandleTypeDef *hcan);
+
+
+void VSEC_SetDuty(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float duty);
+void VSEC_SetCurrent(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float current);
+void VSEC_SetRpm(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float rpm);
+
+/*VSEC CAN数据发送函数*/
+void VESC_CANTransmit(CAN_HandleTypeDef* CANx,uint32_t id, uint8_t *data,uint8_t len);
 
 /*值处理函数*/
 void buffer_append_int16(uint8_t* buffer, int16_t number, int32_t *index);
@@ -205,6 +214,98 @@ void BLDC_Motor_CAN2_IT_Init(void)
 	__HAL_CAN_ENABLE_IT(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING);         //  CAN_IT_FMP0
 
 }
+
+
+/**
+	* @Data   2020-03-13 
+  * @brief  VSEC电机设置duty频率
+	* @param  CAN_HandleTypeDef* CAN_Num   需要发送的CANx
+						uint8_t controller_id        需要控制的电机ID
+						float duty    						   需要更改成为的duty是多少
+  * @retval void
+	* @fallback None
+  */
+void VSEC_SetDuty(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float duty) 
+{
+	int32_t send_index = 0;
+	uint8_t buffer[4];
+	buffer_append_int32(buffer, (int32_t)(duty * 100000.0f), &send_index);//数据类型转换
+	VESC_CANTransmit(CAN_Num,controller_id | ((uint32_t)CAN_PACKET_SET_DUTY << 8),buffer, send_index);//通过CAN发送
+//前半部分是被控制驱动的ID号，后半部分是枚举类型中的命令。
+
+}
+
+
+
+/**
+	* @Data   2020-03-13 
+  * @brief  VSEC电机设置current电流
+	* @param  CAN_HandleTypeDef* CAN_Num   需要发送的CANx
+						uint8_t controller_id        需要控制的电机ID
+						float current    						 需要更改成为的电流是多少
+  * @retval void
+	* @fallback None
+  */
+void VSEC_SetCurrent(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float current) 
+{
+	int32_t send_index = 0;
+	uint8_t buffer[4];
+	buffer_append_int32(buffer, (int32_t)(current * 1000.0), &send_index);
+	VESC_CANTransmit(CAN_Num,controller_id | \
+			((uint32_t)CAN_PACKET_SET_CURRENT << 8), buffer, send_index);
+}
+
+
+
+/**
+	* @Data   2020-03-13 
+  * @brief  VSEC电机设置rpm转速
+	* @param  CAN_HandleTypeDef* CAN_Num   需要发送的CANx
+						uint8_t controller_id        需要控制的电机ID
+						float rpm    						     需要更改成为的转速是多少
+  * @retval void
+	* @fallback None
+  */
+void VSEC_SetRpm(CAN_HandleTypeDef* CAN_Num ,uint8_t controller_id, float rpm) 
+{
+	int32_t send_index = 0;
+	uint8_t buffer[4];
+	buffer_append_int32(buffer, (int32_t)rpm, &send_index);
+	VESC_CANTransmit(CAN_Num,controller_id |
+			((uint32_t)CAN_PACKET_SET_RPM << 8), buffer, send_index);
+}
+
+
+
+/**
+	* @Data   2020-03-13 
+	* @brief  VSEC CAN数据发送
+  * @param  CAN_HandleTypeDef* CANx, 对应的是哪一个CAN
+						uint32_t id, 						 其对应的ID是多少
+						uint8_t *data,					 需要发送的数据所指向的指针
+						uint8_t len              数据长度
+  * @retval void
+	* @fallback None
+  */
+void VESC_CANTransmit(CAN_HandleTypeDef* CANx,uint32_t id, uint8_t *data,uint8_t len)  
+{	  
+	BLDCCAN_Txmsg BLDC_TxMessage;
+	
+	if(len > 8)
+	{
+	   len = 8;
+	}
+	
+	BLDC_TxMessage.TxMessageHeader.ExtId = id;;					 
+	BLDC_TxMessage.TxMessageHeader.IDE = CAN_ID_EXT;  //ID类型
+	BLDC_TxMessage.TxMessageHeader.RTR = CAN_RTR_DATA;				 //发送的为数据
+	BLDC_TxMessage.TxMessageHeader.DLC = len;						 //数据长度为8字节
+	BLDC_TxMessage.TxMessageHeader.TransmitGlobalTime = DISABLE;
+	
+	memcpy(BLDC_TxMessage.Data, data, len);//从CANTxFrame中复制数据
+	HAL_CAN_AddTxMessage(CANx,&BLDC_TxMessage.TxMessageHeader,data,(uint32_t*)CAN_TX_MAILBOX0);
+}
+
 
 /**
 	* @Data   2020-03-13 

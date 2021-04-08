@@ -48,8 +48,12 @@ graduationpro\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.
 graduationpro\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 graduationpro\main.o: ../Inc/can.h
 graduationpro\main.o: ../Inc/dma.h
+graduationpro\main.o: ../Inc/tim.h
 graduationpro\main.o: ../Inc/usart.h
 graduationpro\main.o: ../Inc/gpio.h
 graduationpro\main.o: ../Inc/DR16_Remote.h
+graduationpro\main.o: ../Inc/Angle_conversion.h
 graduationpro\main.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\stdbool.h
 graduationpro\main.o: D:\Keil\MDK_Core\ARM\ARMCC\Bin\..\include\math.h
+graduationpro\main.o: ../Inc/handle.h
+graduationpro\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

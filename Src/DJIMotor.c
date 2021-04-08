@@ -30,11 +30,14 @@
 void DJI_Motor3508Process(CAN_RxTypedef RxMessage);
 void DJI_Motor_CAN1_IT_Init(void);
 void CAN1_DJIHandler(CAN_HandleTypeDef *hcan);
+void DJIMotor_Set3508Current(int16_t iq1, int16_t iq2, int16_t iq3, int16_t iq4);
+void CAN_SendData(CAN_HandleTypeDef* CANx, uint8_t id_type, uint32_t id, uint8_t data[8]);
 /* =========================== FuntionsPulk End=========================== */
 
 /* =========================== Value Begin=========================== */
 DJI_MotorInit_t DJIMotorFunction = DJIMotorGroundInit;
 /*3508电机基本运动数据储存结构体，月球轮四个*/
+
 DJI_Motor3508Folk_t M3508_MoonWheel[4] = {DJI_Motor3508GroundInit,
 																					DJI_Motor3508GroundInit,
 																					DJI_Motor3508GroundInit,
@@ -92,6 +95,8 @@ void DJI_Motor3508Process(CAN_RxTypedef RxMessage)
 	#endif
 }
 
+
+
 /**
 	* @Data   2020-12-07 
   * @brief  CAN1处理函数（使用中断）
@@ -119,6 +124,9 @@ void CAN1_DJIHandler(CAN_HandleTypeDef *hcan)
 		__HAL_CAN_CLEAR_FLAG(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 	}
 }
+
+
+
 /**
 	* @Data   2020-12-07 
   * @brief  初始化CAN1中断函数，用于接收Motor的报文
@@ -141,5 +149,59 @@ void DJI_Motor_CAN1_IT_Init(void)
 
 
 
+/**
+	* @Data   2021-04-05
+  * @brief  设置3508电机电流
+  * @param  void
+  * @retval void
+	* @fallback None
+  */
+void DJIMotor_Set3508Current(int16_t iq1, int16_t iq2, int16_t iq3, int16_t iq4) 
+{
+
+	uint8_t data[8];
+
+	//数据格式详见说明书P32
+	data[0] = iq1 >> 8;
+	data[1] = iq1;
+	data[2] = iq2 >> 8;
+	data[3] = iq2;
+	data[4] = iq3 >> 8;
+	data[5] = iq3;
+	data[6] = iq4 >> 8;
+	data[7] = iq4;
+
+	CAN_SendData(&hcan1, CAN_ID_STD, M3508_SENDID, data);
+
+}
+
+
+
+/**
+  * @brief  CAN发送数据
+  * @param  CANx 		CAN编号
+  * 				id_type ·	id类型 CAN_ID_STD， CAN_ID_EXT
+  *					id			id号
+  * 				data[8]		8个数据
+  * @retval None
+  */
+void CAN_SendData(CAN_HandleTypeDef* CANx, uint8_t id_type, uint32_t id, uint8_t data[8])  
+{	  
+	CAN_TxHeaderTypeDef TxMessage;
+	
+	if(id_type == CAN_ID_STD){
+		TxMessage.StdId = id;						 
+	}
+	else{
+		TxMessage.ExtId = id;					 //ID号
+	}
+	
+	TxMessage.IDE = id_type;					 //ID类型
+	TxMessage.RTR = CAN_RTR_DATA;				 //发送的为数据
+	TxMessage.DLC = 0x08;						 //数据长度为8字节
+	TxMessage.TransmitGlobalTime = DISABLE;
+	
+	HAL_CAN_AddTxMessage(CANx,&TxMessage,data,(uint32_t*)CAN_TX_MAILBOX0);
+}
 
 /* =========================== Funtions End=========================== */

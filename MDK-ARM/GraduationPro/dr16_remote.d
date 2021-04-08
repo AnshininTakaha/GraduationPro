@@ -1,5 +1,6 @@
 graduationpro\dr16_remote.o: ..\Src\DR16_Remote.c
 graduationpro\dr16_remote.o: ../Inc/DR16_Remote.h
+graduationpro\dr16_remote.o: ../Inc/Angle_conversion.h
 graduationpro\dr16_remote.o: ../Inc/usart.h
 graduationpro\dr16_remote.o: ../Inc/main.h
 graduationpro\dr16_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

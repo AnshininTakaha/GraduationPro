@@ -143,8 +143,8 @@ void DR16_Process(uint8_t *pData)
 //	((DR16_Export_data.DR16_Direct_Y_Value + DR16_Export_data.DR16_Omega_Y_Value) * \
 //	(DR16_Export_data.DR16_Direct_Y_Value + DR16_Export_data.DR16_Omega_Y_Value)));
 	
-	DR16_Export_data.Switch_Left = DR16.rc.s_left;
-	DR16_Export_data.Switch_Right = DR16.rc.s_right;
+	DR16_Export_data.Switch_Left = (RemotePole_e)DR16.rc.s_left;
+	DR16_Export_data.Switch_Right = (RemotePole_e)DR16.rc.s_right;
 }
 
 

@@ -26,10 +26,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-#include "DR16_Remote.h"
+#include "Classical_Control.h"
+
 #include "DJIMotor.h"
 #include "BLDCMotor.h"
 #include "Enconder.h"
+
+#include "handle.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +56,7 @@
 /* USER CODE END Variables */
 osThreadId StartTaskHandle;
 osThreadId CANTaskHandle;
+osThreadId ControlTaskHandle;
 osMessageQId xQueueCanReceiveHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -62,6 +66,7 @@ osMessageQId xQueueCanReceiveHandle;
 
 void StartTaskEnter(void const * argument);
 void CANTaskEnter(void const * argument);
+void ControlTaskEnter(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -105,7 +110,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of xQueueCanReceive */
-  osMessageQDef(xQueueCanReceive, 16, CAN_RxTypedef);
+  osMessageQDef(xQueueCanReceive, 20, CAN_RxTypedef);
   xQueueCanReceiveHandle = osMessageCreate(osMessageQ(xQueueCanReceive), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -118,8 +123,12 @@ void MX_FREERTOS_Init(void) {
   StartTaskHandle = osThreadCreate(osThread(StartTask), NULL);
 
   /* definition and creation of CANTask */
-  osThreadDef(CANTask, CANTaskEnter, osPriorityHigh, 0, 256);
+  osThreadDef(CANTask, CANTaskEnter, osPriorityHigh, 0, 500);
   CANTaskHandle = osThreadCreate(osThread(CANTask), NULL);
+
+  /* definition and creation of ControlTask */
+  osThreadDef(ControlTask, ControlTaskEnter, osPriorityNormal, 0, 500);
+  ControlTaskHandle = osThreadCreate(osThread(ControlTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -197,13 +206,30 @@ void CANTaskEnter(void const * argument)
 		{
 			BLDCMotorFunction.BLDCMotor_Process(CanReceiveData);
 		}
-			
-			
-		
-		
-    osDelay(1);
+
+    osDelay(5);
   }
   /* USER CODE END CANTaskEnter */
+}
+
+/* USER CODE BEGIN Header_ControlTaskEnter */
+/**
+* @brief Function implementing the ControlTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ControlTaskEnter */
+void ControlTaskEnter(void const * argument)
+{
+  /* USER CODE BEGIN ControlTaskEnter */
+  /* Infinite loop */
+  for(;;)
+  {
+		Classical.Classical_Control(&DR16_Export_data);
+		
+    osDelay(5);
+  }
+  /* USER CODE END ControlTaskEnter */
 }
 
 /* Private application code --------------------------------------------------*/

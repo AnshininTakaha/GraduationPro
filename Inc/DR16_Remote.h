@@ -1,6 +1,7 @@
 #ifndef __DR16_REMOTE_H__
 #define __DR16_REMOTE_H__
 
+#include "Angle_conversion.h"
 #include "usart.h"
 #include <stdbool.h>
 #include <math.h>
@@ -13,7 +14,7 @@
 #define DR16BufferTruthNumber 18
 #define DR16BufferLastNumber 4
 
-#define PI 3.141
+
 /* =========================== PriviteDefine End=========================== */
 
 /* =========================== GroundInit Begin=========================== */
@@ -89,8 +90,6 @@ typedef struct///遥控器解码结构体
 	void(*DR16_Process)(uint8_t *pData);//DR16解码
 	void(*DR16_Handler)(UART_HandleTypeDef *huart);//DR16中断处理
 	void(*DR16_USART1_IT_Init)(void);//DR16中断初始化
-	
-	
 } DR16_t;
 
 
@@ -104,13 +103,17 @@ typedef enum///遥控器左右拨杆开关枚举
 
 typedef struct///机器人总体变量
 {
-	int DR16_Direct_Y_Value;
-	int DR16_Direct_X_Value;
+	/*前置计算数据*/
+	int DR16_Direct_Y_Value;//前+后-
+	int DR16_Direct_X_Value;//左-右+
 	float DR16_Direct_Angle_Value;
 	int DR16_Omega_Value;
 	RemotePole_e Switch_Left;
 	RemotePole_e Switch_Right;
 	
+	/*后置计算数据*/
+	float Output_Velocity[4];
+	float Output_Angle[4];
 }DR16_Export_Data_t,*ExportData; //供其他文件使用的输出数据。
 
 
