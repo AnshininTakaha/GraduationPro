@@ -3,7 +3,7 @@
 <title>Static Call Graph - [GraduationPro\GraduationPro.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image GraduationPro\GraduationPro.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Apr 08 15:46:07 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 09 13:20:07 2021
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -823,8 +823,8 @@ Global Symbols
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Baud_Config
 </UL>
 
-<P><STRONG><a name="[3]"></a>Classical_Control</STRONG> (Thumb, 318 bytes, Stack size 56 bytes, classical_control.o(i.Classical_Control))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Classical_Control &rArr; Position_PID
+<P><STRONG><a name="[3]"></a>Classical_Control</STRONG> (Thumb, 558 bytes, Stack size 40 bytes, classical_control.o(i.Classical_Control))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = Classical_Control &rArr; Position_PID
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Position_PID
 </UL>
@@ -1538,8 +1538,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> classical_control.o(.data)
 </UL>
-<P><STRONG><a name="[5]"></a>StreeingWheelCalculation_S</STRONG> (Thumb, 88 bytes, Stack size 20 bytes, classical_control.o(i.StreeingWheelCalculation_S))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = StreeingWheelCalculation_S
+<P><STRONG><a name="[5]"></a>StreeingWheelCalculation_S</STRONG> (Thumb, 146 bytes, Stack size 48 bytes, classical_control.o(i.StreeingWheelCalculation_S))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = StreeingWheelCalculation_S &rArr; __aeabi_dmul
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> classical_control.o(.data)
 </UL>
@@ -2240,6 +2244,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rad_into_Angle
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Angle_into_Rad
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DR16_Process
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StreeingWheelCalculation_S
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StreeingWheelCalculation_P
 </UL>
 
@@ -2295,6 +2300,7 @@ Global Symbols
 <P><STRONG><a name="[b9]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
 <BR><BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DR16_Process
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StreeingWheelCalculation_S
 </UL>
 
 <P><STRONG><a name="[1a9]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt), UNUSED)
@@ -2317,6 +2323,7 @@ Global Symbols
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Angle_into_Rad
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VSEC_SetCurrent
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DR16_Process
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StreeingWheelCalculation_S
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StreeingWheelCalculation_P
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 </UL>

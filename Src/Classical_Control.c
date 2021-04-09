@@ -37,7 +37,11 @@ Classical_Functions Classical = GroundInit_Classical_Functions;
   */
 	/*OMEGA = +右 : LF:45 RF:135 RB:-135 LB:-45*/
 	/*OMEGA = -左 : LF:-135 RF:-45 RB:45 LB:135*/
-	
+/*计算角度累加值，用于相对式角度定位*/
+float OmegaChange[4] = {EncoderRB_BaseAbsEnc, \
+												EncoderLB_BaseAbsEnc, \
+												EncoderLF_BaseAbsEnc, \
+												EncoderRF_BaseAbsEnc};
 void Classical_Control(ExportData ExpData)
 {
 	float PIDOutput[4] = {0,0,0,0};
@@ -46,11 +50,7 @@ void Classical_Control(ExportData ExpData)
 																EncoderLB_BaseAbsEnc, \
 																EncoderLF_BaseAbsEnc, \
 																EncoderRF_BaseAbsEnc};
-	/*计算角度累加值，用于相对式角度定位*/
-	float OmegaChange[4] = {EncoderRB_BaseAbsEnc, \
-													EncoderLB_BaseAbsEnc, \
-													EncoderLF_BaseAbsEnc, \
-													EncoderRF_BaseAbsEnc};
+	
 	/*选择模式*/
 	switch((int)ExpData->Switch_Left)
 	{
@@ -75,6 +75,30 @@ void Classical_Control(ExportData ExpData)
 											 M3508_MoonWheel[0].PID.Posit_PID_Out.PWM, \
 											 M3508_MoonWheel[0].Feedback.ReadSpeed);
 			PIDOutput[0] = M3508_MoonWheel[0].PID.Posit_PID_In.PWM;
+			
+			Position_PID(&M3508_MoonWheel[1].PID.Posit_PID_Out, \
+											 OmegaChange[2], \
+											 Enconder[1].Enconder_ReadBackAngle);
+			Position_PID(&M3508_MoonWheel[1].PID.Posit_PID_In, \
+											 M3508_MoonWheel[1].PID.Posit_PID_Out.PWM, \
+											 M3508_MoonWheel[1].Feedback.ReadSpeed);
+			PIDOutput[1] = M3508_MoonWheel[1].PID.Posit_PID_In.PWM;
+			
+			Position_PID(&M3508_MoonWheel[2].PID.Posit_PID_Out, \
+											 OmegaChange[0], \
+											 Enconder[2].Enconder_ReadBackAngle);
+			Position_PID(&M3508_MoonWheel[2].PID.Posit_PID_In, \
+											 M3508_MoonWheel[2].PID.Posit_PID_Out.PWM, \
+											 M3508_MoonWheel[2].Feedback.ReadSpeed);
+			PIDOutput[2] = M3508_MoonWheel[2].PID.Posit_PID_In.PWM;
+			
+			Position_PID(&M3508_MoonWheel[3].PID.Posit_PID_Out, \
+											 OmegaChange[1], \
+											 Enconder[3].Enconder_ReadBackAngle);
+			Position_PID(&M3508_MoonWheel[3].PID.Posit_PID_In, \
+											 M3508_MoonWheel[3].PID.Posit_PID_Out.PWM, \
+											 M3508_MoonWheel[3].Feedback.ReadSpeed);
+			PIDOutput[3] = M3508_MoonWheel[3].PID.Posit_PID_In.PWM;
 			
 			/*月球轮运动参数赋值给轮子*/
 			Classical.MoonWheelPush(PIDOutput[0],PIDOutput[1],PIDOutput[2],PIDOutput[3]);
@@ -244,8 +268,8 @@ void StreeingWheelCalculation_S(ExportData ExpData)
 	float Omega_Angle[4]= {0.0f,0.0f,0.0f,0.0f};
 	
 	/*前进速度和转弯速度*/
-	VeloccityY = ExpData->DR16_Direct_Y_Value;
-	OmegaChange_Velocity = ExpData->DR16_Omega_Value;
+	VeloccityY = ExpData->DR16_Direct_Y_Value*0.1;
+	OmegaChange_Velocity = ExpData->DR16_Omega_Value*0.1;
 	
 	/*对应速度赋值到对应的Output中去*/
 	for(int i=0; i<4; i++)
