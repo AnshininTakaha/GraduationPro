@@ -67,7 +67,7 @@ void Classical_Control(ExportData ExpData)
 			}
 			
 			//加是否自旋判断？
-			
+			//闭环，记得对应OmegaChange里面Enc所对应的轮子方向
 			Position_PID(&M3508_MoonWheel[0].PID.Posit_PID_Out, \
 											 OmegaChange[3], \
 											 Enconder[0].Enconder_ReadBackAngle);
