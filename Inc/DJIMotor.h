@@ -42,15 +42,38 @@
 	&DJI_Motor3508Process, \
 	&DJIMotor_Set3508Current, \
 }  
-
-
-#define DJI_Motor3508GroundInit \
+#define DJI_Motor3508GroundInitRB \
 { \
 		{0,0,0,0}, \
 		{0,0,0,0,0,0}, \
-		{PID_GroundSpendInit,PMode_GroundInitOut,PMode_GroundInitIn}, \
+		{PID_GroundSpendInit,PMode_GroundInitOutRB,PMode_GroundInitInRB}, \
 		{0,0}, \
 }
+
+#define DJI_Motor3508GroundInitLB \
+{ \
+		{0,0,0,0}, \
+		{0,0,0,0,0,0}, \
+		{PID_GroundSpendInit,PMode_GroundInitOutLB,PMode_GroundInitInLB}, \
+		{0,0}, \
+}
+
+#define DJI_Motor3508GroundInitLF \
+{ \
+		{0,0,0,0}, \
+		{0,0,0,0,0,0}, \
+		{PID_GroundSpendInit,PMode_GroundInitOutLF,PMode_GroundInitInLF}, \
+		{0,0}, \
+}
+
+#define DJI_Motor3508GroundInitRF \
+{ \
+		{0,0,0,0}, \
+		{0,0,0,0,0,0}, \
+		{PID_GroundSpendInit,PMode_GroundInitOutRF,PMode_GroundInitInRF}, \
+		{0,0}, \
+}
+
 /* =========================== GroundInit End=========================== */
 
 

@@ -15,10 +15,12 @@
 #define EncoderRB_ID 0x02
 
 /*编码器绝对式起始角度(学校的舵轮底盘)*/
-#define EncoderLF_BaseAbsEnc 100898   //0
-#define EncoderRF_BaseAbsEnc 103913   //1
-#define EncoderLB_BaseAbsEnc 96605    //2
-#define EncoderRB_BaseAbsEnc 100888   //3
+#define EncoderLF_BaseAbsEnc 82319   //0
+#define EncoderRF_BaseAbsEnc 98782   //1
+#define EncoderLB_BaseAbsEnc 96641    //2
+#define EncoderRB_BaseAbsEnc 100974   //3
+
+
 
 
 /*电机编码器值转为角度*/

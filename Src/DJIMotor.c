@@ -38,10 +38,10 @@ void CAN_SendData(CAN_HandleTypeDef* CANx, uint8_t id_type, uint32_t id, uint8_t
 DJI_MotorInit_t DJIMotorFunction = DJIMotorGroundInit;
 /*3508电机基本运动数据储存结构体，月球轮四个*/
 
-DJI_Motor3508Folk_t M3508_MoonWheel[4] = {DJI_Motor3508GroundInit,
-																					DJI_Motor3508GroundInit,
-																					DJI_Motor3508GroundInit,
-																					DJI_Motor3508GroundInit};
+DJI_Motor3508Folk_t M3508_MoonWheel[4] = {DJI_Motor3508GroundInitRB,
+																					DJI_Motor3508GroundInitLB,
+																					DJI_Motor3508GroundInitLF,
+																					DJI_Motor3508GroundInitRF};
 
 /* =========================== Value End=========================== */
 
@@ -144,6 +144,8 @@ void DJI_Motor_CAN1_IT_Init(void)
 	
 	/*使能CAN1的IT中断*/
 	__HAL_CAN_ENABLE_IT(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+	
+	
 		
 }
 
