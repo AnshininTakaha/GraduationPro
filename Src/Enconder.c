@@ -6,12 +6,22 @@
   * @date		 2020-12-21 初次考虑加入流式编码器，进行选型
 						 2021-02-01 流失编码器通过测试，但是协议部分有待优化，会出现收发卡段现象
 						 2021-03-13 确定流失编码器协议，开始更改旧协议
+						 2021-04-28 完全封装完成，最终版完成
 						 
   * @brief   编码器各种整合结构
 						 
-	* @funtion(in) 
+	* @funtion(in) Encoder_Read_Config 读取编码器的值
+								 Encoder_ID_Config   读取编码器的ID
+								 Encoder_Baud_Config 读取编码器的波特率
+								 Encoder_Read_Mode   读取编码器的模式
+								 Encoder_Time_Config 设置编码器的自动回传周期
+								 Encoder_Zero_Config 设置编码器当前位置为零点
+								 Encoder_Process		 编码器回传报文处理
+								 CAN1_EncHandler		 CAN1中断报文处理
+								 Enc_CAN1_IT_Init    CAN_Encdoer中断初始化函数
 						 
-	* @value(share)   
+	* @value(share)   EnconderFunction_t EnconderFunction  编码器基础功能函数
+									  Enconder_Folk_t Enconder[4]          编码器数据函数
   ******************************************************************************
   */
 #include "Enconder.h"

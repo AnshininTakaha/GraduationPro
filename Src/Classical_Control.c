@@ -3,12 +3,15 @@
   * @file    Classical_Control.c
   * @author  口无
   * @version V1.0
-  * @date		 
+  * @date		 2021.04.26
 						 
   * @brief   底盘控制模型
 						 
-	* @funtion(in) 
-						 
+	* @funtion(in) Classical_Control        	底盘控制函数
+								 StreeingWheelCalculation_P 运动位置模式
+								 StreeingWheelCalculation_S 运动速度模式
+								 StreeingWheelPush          主驱动轮电流赋值
+								 MoonWheelPush              月球轮电流赋值
 	* @value(share) 
   ******************************************************************************
   */
